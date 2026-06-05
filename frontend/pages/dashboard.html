@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RajFAB Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:#111827;overflow-x:hidden;}
+
+
+    /* ── TOP BAR ── */
+    .topbar { background: #1a2a4a; height: 34px; display: flex; align-items: center; padding: 0 24px; justify-content: space-between; }
+    .topbar-left { display: flex; align-items: center; gap: 16px; color: #a0aec0; font-size: 12px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; color: #a0aec0; font-size: 12px; }
+    .topbar-right a { color: #a0aec0; text-decoration: none; }
+    .topbar-sep { color: #4a5568; }
+
+    /* ── NAVBAR ── */
+    /* ── NAVBAR ── */
+    .navbar { background: #fff; height: 64px; display: flex; align-items: center; padding: 0 80px; border-bottom: 1px solid #e8ecf0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; }
+    .brand-text-main { font-size: 20px; font-weight: 800; color: #0f2454; letter-spacing: -0.3px; }
+    .brand-text-main span { color: #1D3680; }
+    .brand-sub { font-size: 11px; color: #6b7280; font-weight: 400; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; margin-left: 120px; gap: 2px; }
+    .nav-link{
+  padding: 7px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.nav-link:not(.active):hover{
+  background: #f3f4f6;
+}
+.nav-link.active{
+  background: #1D3680;
+  color: #fff;
+}
+.nav-link.active:hover{
+  background: #1D3680;
+  color: #fff;
+}
+
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .bell-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e5e7eb; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .login-btn { color: #131212; padding: 8px 20px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; }
+
+
+
+/* MAIN */
+.dashboard-wrapper{max-width:1280px;margin:auto;padding:44px 32px 80px;}
+
+/* HERO */
+.dashboard-hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:32px;
+}
+.hero-left h1{font-size:34px;font-weight:700;color:#111827;margin-bottom:6px;letter-spacing:-0.5px;}
+.hero-left p{font-size:14px;color:#6b7280;font-weight:400;}
+.hero-right{display:flex;gap:12px;align-items:center;}
+.update-pill{
+  height:40px;
+  border-radius:999px;
+  background:#fff;
+  border:1.5px solid #e5e7eb;
+  display:flex;align-items:center;gap:8px;
+  padding:0 16px;
+  font-size:13.5px;font-weight:500;color:#16a34a;
+  white-space:nowrap;
+}
+.green-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;flex-shrink:0;}
+.source-pill{
+  height:40px;
+  border-radius:999px;
+  background:#fff;
+  border:1.5px solid #e5e7eb;
+  display:flex;align-items:center;gap:8px;
+  padding:0 16px;
+  font-size:13.5px;font-weight:500;color:#1D3680;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:.2s;
+}
+.source-pill:hover{background:#f0f4ff;border-color:#c7d2fe;}
+
+/* TOP STATS */
+.top-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:30px;
+}
+.stat-card{
+  background:#fff;
+  border:1.5px solid #e9ebef;
+  padding:20px 22px 18px;
+  border-radius:14px;
+  min-height:130px;
+}
+.icon-box{
+  width:46px;height:46px;
+  border-radius:12px;
+  background:#EEF0F7;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;
+  font-size:17px;color:#4B5563;
+}
+.stat-card h2{font-size:30px;font-weight:700;color:#111827;margin-bottom:4px;line-height:1.1;}
+.stat-card p{font-size:14px;color:#6b7280;font-weight:400;}
+
+/* TABS */
+.tabs-wrap{
+  display:flex;gap:6px;
+  background:#ECEEF3;
+  width:max-content;
+  padding:5px 6px;
+  border-radius:999px;
+  margin-bottom:20px;
+  margin-top:8px;
+}
+.tab-btn{
+  border:none;background:transparent;
+  border-radius:999px;
+  padding:8px 18px;
+  font-size:13px;font-weight:500;
+  color:#374151;
+  cursor:pointer;
+  font-family:'Poppins',sans-serif;
+  transition:.2s;
+}
+.tab-btn.active{background:#243D90;color:#fff;}
+.tab-btn:hover:not(.active){background:#dde1ea;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* SERVICE GRID */
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.service-card{
+  background:#fff;
+  border:1.5px solid #e9ebef;
+  border-radius:12px;
+  padding:16px 18px 18px;
+}
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+.service-icon{
+  width:38px;height:38px;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.si-blue{background:#E7EEFF;color:#2950B8;}
+.si-purple{background:#ECEAFF;color:#6658F6;}
+.si-red{background:#FFE7EC;color:#D84567;}
+.si-orange{background:#FFF3E5;color:#D97B25;}
+.si-green{background:#E7F9EF;color:#17A34A;}
+
+.approval-pill{
+  height:26px;
+  padding:0 13px;
+  border-radius:999px;
+  border:1.5px solid #E5E7EB;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;font-weight:500;color:#374151;
+  background:#fff;
+  white-space:nowrap;
+}
+.service-card h3{font-size:15px;font-weight:700;color:#111;margin-bottom:2px;}
+.time-limit{font-size:13px;color:#6b7280;margin-bottom:13px;font-weight:400;}
+.mini-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+}
+.mini-box{
+  background:#F5F6F8;
+  border-radius:8px;
+  padding:10px 12px;
+}
+.mini-box span{display:block;color:#6B7280;font-size:12px;margin-bottom:3px;font-weight:400;}
+.mini-box strong{font-size:14px;font-weight:700;color:#111;line-height:1.2;}
+.green-val{color:#16A34A;}
+
+/* BAR CHART TAB */
+.chart-wrap{
+  background:#fff;
+  border:1.5px solid #e5e7eb;
+  border-radius:16px;
+  padding:26px 28px;
+}
+.chart-wrap h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+.chart-wrap p{font-size:13px;color:#6b7280;margin-bottom:24px;}
+.chart-container{position:relative;height:360px;}
+
+/* SUMMARY TABLE */
+.table-wrap{
+  background:#fff;
+  border:1.5px solid #e5e7eb;
+  border-radius:16px;
+  padding:26px 28px;
+  overflow-x:auto;
+}
+.table-wrap h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+.table-wrap>p{font-size:13px;color:#6b7280;margin-bottom:22px;}
+.summary-table{width:100%;border-collapse:collapse;min-width:700px;}
+.summary-table thead tr{background:#f8f9fb;}
+.summary-table th{
+  padding:13px 16px;
+  text-align:left;
+  font-size:13px;font-weight:600;color:#374151;
+  border-bottom:1.5px solid #e9ebef;
+  white-space:nowrap;
+}
+.summary-table td{
+  padding:14px 16px;
+  font-size:13.5px;color:#374151;
+  border-bottom:1px solid #f0f2f5;
+  white-space:nowrap;
+}
+.summary-table tbody tr:last-child td{border-bottom:none;}
+.summary-table tbody tr:hover{background:#fafbfc;}
+.td-green{color:#16A34A;font-weight:600;}
+.td-red{color:#ef5b2b;font-weight:600;}
+.td-bold{font-weight:600;color:#111;}
+
+/* ── FOOTER ── */
+    .footer { background: #0D121F; padding: 56px 160px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.6fr 1.8fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand-name { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .footer-brand-name span { color: #f9f9fa; }
+    .footer-brand-sub { font-size: 11.5px; color: #FFFFFF99; margin-bottom: 16px; }
+    .footer-desc { font-size: 13px; color: #FFFFFF99; line-height: 1.65; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+    .footer-link { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 10px; cursor: pointer; }
+    .footer-link:hover { color: #FFFFFF99; }
+    .footer-link.underline-link { text-decoration: underline; color: #FFFFFF99; }
+    .footer-contact-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #94a3b8; line-height: 1.5; }
+    .footer-contact-item a { color: #94a3b8; text-decoration: none; }
+    .footer-border-top { border-top: 1px solid rgba(255,255,255,0.08); }
+    .footer-nodal { padding: 14px 0; text-align: center; font-size: 12px; color: #FFFFFF99; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-nodal a { color: #f8fafc; text-decoration: none; }
+    .footer-bottom { padding: 16px 0; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { color: #FFFFFF99; text-decoration: none; }
+    .footer-bottom-links a:hover { color: #FFFFFF99; }
+
+    .icon { display: inline-flex; }
+
+
+@media(max-width:900px){
+  .navbar{padding:0 18px;}
+  .nav-links{display:none;}
+  .top-stats{grid-template-columns:repeat(2,1fr);}
+  .service-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer{padding:40px 24px 0;}
+}
+
+
+  /* ── DROPDOWN ── */
+  .nav-dropdown-wrap { position: relative; }
+
+  .nav-dropdown-wrap .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid #e8ecf0;
+    z-index: 999;
+    padding: 20px 0 10px;
+    overflow: hidden;
+  }
+
+  /* show on hover */
+  .nav-dropdown-wrap:hover .dropdown-menu,
+  .nav-dropdown-wrap:focus-within .dropdown-menu {
+    display: block;
+  }
+
+  /* small arrow pointer at top */
+  .nav-dropdown-wrap .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px; height: 14px;
+    background: #fff;
+    border-left: 1px solid #e8ecf0;
+    border-top: 1px solid #e8ecf0;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .dropdown-header {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1D3680;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 0 20px 12px;
+    border-bottom: 1px solid #e8ecf0;
+    margin-bottom: 6px;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+  .dropdown-item:hover { background: #f5f7fa; }
+
+  .dropdown-link-icon {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    background: #eef0f8;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .dropdown-item-text { flex: 1; min-width: 0; }
+
+  .dropdown-item-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-bottom: 3px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .dropdown-item-sub {
+    font-size: 12.5px;
+    color: #6b7280;
+    font-weight: 400;
+    display: flex; align-items: center; gap: 5px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* external link icon inline */
+  .ext-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span>🇮🇳 English</span>
+    <span>|</span>
+    <span>Helpline: 1800-180-6030</span>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Skip to Content</a>
+    <span>|</span>
+    <span>A+</span>
+    <span>A-</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+      <img src="/frontend/assets/icons/pngwing.com 1 (1).svg" alt="Logo" style="width: 36px;height: 36px;object-fit:contain;" />
+    </div>
+    <div>
+      <div class="brand-text-main">RajFAB</div>
+      <div class="brand-sub">Factory &amp; Boiler Inspection Dept.</div>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link ">Home</a>
+    <a href="/frontend/pages/services.html" class="nav-link">Services</a>
+    <a href="/frontend/pages/dashboard.html" class="nav-link active">Dashboard</a>
+    <a href="/frontend/pages/resources.html" class="nav-link">Resources &amp; Documents</a>
+
+    <!-- USEFUL LINKS with dropdown -->
+    <div class="nav-dropdown-wrap">
+      <a href="#" class="nav-link" style="user-select:none;">
+        Useful Links
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+
+      <div class="dropdown-menu">
+        <div class="dropdown-header">Useful Links</div>
+
+        <!-- Item 1 -->
+        <a href="https://www.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Rajasthan Government
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Official Govt. of Rajasthan portal
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="https://rajnivesh.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Raj Nivesh Portal
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Investment &amp; industry application
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="https://emitra.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              E-Mitra Services
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              citizen services through e-Mitra
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 4 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Office &amp; Telephone Directory
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              All regional office contact
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 5 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              MSME ordinance 2019
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              MSME relief and compliance info
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 6 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Citizen Charter
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Department services standards
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+      </div><!-- /dropdown-menu -->
+    </div><!-- /nav-dropdown-wrap -->
+
+    <a href="/frontend/pages/help.html" class="nav-link">Help</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="bell-btn">
+      <a href="/frontend/pages/notifications.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </a>
+    </div>
+    <a href="#" class="login-btn">Log in</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="dashboard-wrapper">
+
+  <!-- HERO -->
+  <section class="dashboard-hero">
+    <div class="hero-left">
+      <h1>Dashboard</h1>
+      <p>Factories &amp; Boilers Inspection department – Live statistics</p>
+    </div>
+    <div class="hero-right">
+      <div class="update-pill">
+        <span class="green-dot"></span>
+        Updated: 26 May 2026
+      </div>
+      <a href="https://rajfab.rajasthan.gov.in/frmRajfabDashBoard.aspx" target="_blank" rel="noopener" class="source-pill">
+        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i>
+        Official Source
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="top-stats">
+    <div class="stat-card">
+      <div class="icon-box"><i class="fa-solid fa-arrow-trend-up"></i></div>
+      <h2>34993</h2>
+      <p>Total application</p>
+    </div>
+    <div class="stat-card">
+      <div class="icon-box"><i class="fa-regular fa-circle-check"></i></div>
+      <h2>34993</h2>
+      <p>Total approved</p>
+    </div>
+    <div class="stat-card">
+      <div class="icon-box"><i class="fa-solid fa-percent"></i></div>
+      <h2>100%</h2>
+      <p>Approval rate</p>
+    </div>
+    <div class="stat-card">
+      <div class="icon-box"><i class="fa-solid fa-chart-column"></i></div>
+      <h2>21266</h2>
+      <p>Inspection conducted</p>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <button class="tab-btn active" data-tab="overview">Overview Cards</button>
+    <button class="tab-btn" data-tab="chart">Bar Charts</button>
+    <button class="tab-btn" data-tab="table">Summery table</button>
+  </div>
+
+  <!-- OVERVIEW CARDS -->
+  <section id="overview" class="tab-content active">
+    <div class="service-grid">
+
+      <!-- 1 Factory Auto Renewal -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-blue"><i class="fa-solid fa-rotate"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Factory Auto Renewal</h3>
+        <p class="time-limit">Time Limit: <strong>10 Sec</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>10,929</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">10,929</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>6 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>₹19,078</strong></div>
+        </div>
+      </div>
+
+      <!-- 2 Plan Approval -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-purple"><i class="fa-regular fa-file-lines"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Plan Approval</h3>
+        <p class="time-limit">Time Limit: <strong>30 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>4,019</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">4,019</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>15 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>—</strong></div>
+        </div>
+      </div>
+
+      <!-- 3 Plan Amendment -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-red"><i class="fa-regular fa-file-lines"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Plan Amendment</h3>
+        <p class="time-limit">Time Limit: <strong>30 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>286</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">286</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>14 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>—</strong></div>
+        </div>
+      </div>
+
+      <!-- 4 Boiler Registration -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-orange"><i class="fa-regular fa-shield"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Boiler Registration</h3>
+        <p class="time-limit">Time Limit: <strong>30 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>986</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">986</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>36 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>₹10,552</strong></div>
+        </div>
+      </div>
+
+      <!-- 5 Boiler Renewal -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-orange"><i class="fa-regular fa-clock"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Boiler Renewal</h3>
+        <p class="time-limit">Time Limit: <strong>15 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>10,170</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">10,170</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>1 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>₹8,300</strong></div>
+        </div>
+      </div>
+
+      <!-- 6 Factory Registration -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-green"><i class="fa-solid fa-industry"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Factory Registration</h3>
+        <p class="time-limit">Time Limit: <strong>60 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>3,860</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">3,860</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>10 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>₹31,901</strong></div>
+        </div>
+      </div>
+
+      <!-- 7 Factory Amendment -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-blue"><i class="fa-solid fa-wrench"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Factory Amendment</h3>
+        <p class="time-limit">Time Limit: <strong>60 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>4,721</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">4,721</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>11 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>₹31,757</strong></div>
+        </div>
+      </div>
+
+      <!-- 8 Self Certificate -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-green"><i class="fa-regular fa-circle-check"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Self Certificate</h3>
+        <p class="time-limit">Time Limit: <strong>15 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>19</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">19</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>0 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>₹1,09,579</strong></div>
+        </div>
+      </div>
+
+      <!-- 9 Boiler Manufacturer -->
+      <div class="service-card">
+        <div class="card-top">
+          <div class="service-icon si-blue"><i class="fa-solid fa-fire"></i></div>
+          <div class="approval-pill">100% Approved</div>
+        </div>
+        <h3>Boiler Manufacturer</h3>
+        <p class="time-limit">Time Limit: <strong>30 Days</strong></p>
+        <div class="mini-grid">
+          <div class="mini-box"><span>Received</span><strong>3</strong></div>
+          <div class="mini-box"><span>Approved</span><strong class="green-val">3</strong></div>
+          <div class="mini-box"><span>Avg. Time</span><strong>17 days</strong></div>
+          <div class="mini-box"><span>Avg. Fee</span><strong>—</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BAR CHART TAB -->
+  <section id="chart" class="tab-content">
+    <div class="chart-wrap">
+      <h3>Applications Received vs Approved</h3>
+      <p>All services — 100% approval rate across the board</p>
+      <div class="chart-container">
+        <canvas id="dashboardChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY TABLE TAB -->
+  <section id="table" class="tab-content">
+    <div class="table-wrap">
+      <h3>Service-wise Summary</h3>
+      <p>Processing time and fee details for all services</p>
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Time Limit</th>
+            <th>Received</th>
+            <th>Approved</th>
+            <th>Avg. Days</th>
+            <th>Median Days</th>
+            <th>Max Days</th>
+            <th>Avg. Fee (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-bold">Factory Auto Renewal</td>
+            <td>10 Sec</td>
+            <td>10,929</td>
+            <td class="td-green">10,929</td>
+            <td>6</td>
+            <td>0</td>
+            <td class="td-red">1451</td>
+            <td>₹19,078</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Plan Approval</td>
+            <td>30 Days</td>
+            <td>4,019</td>
+            <td class="td-green">4,019</td>
+            <td>15</td>
+            <td>10</td>
+            <td class="td-red">1083</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Plan Amendment</td>
+            <td>30 Days</td>
+            <td>286</td>
+            <td class="td-green">286</td>
+            <td>14</td>
+            <td>12</td>
+            <td class="td-red">94</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Boiler Registration</td>
+            <td>30 Days</td>
+            <td>986</td>
+            <td class="td-green">986</td>
+            <td>36</td>
+            <td>25</td>
+            <td class="td-red">618</td>
+            <td>₹10,552</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Boiler Renewal</td>
+            <td>15 Days</td>
+            <td>10,170</td>
+            <td class="td-green">10,170</td>
+            <td>1</td>
+            <td>0</td>
+            <td class="td-red">365</td>
+            <td>₹8,300</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Factory Registration</td>
+            <td>60 Days</td>
+            <td>3,860</td>
+            <td class="td-green">3,860</td>
+            <td>10</td>
+            <td>8</td>
+            <td class="td-red">539</td>
+            <td>₹31,901</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Factory Amendment</td>
+            <td>60 Days</td>
+            <td>4,721</td>
+            <td class="td-green">4,721</td>
+            <td>11</td>
+            <td>8</td>
+            <td class="td-red">707</td>
+            <td>₹31,757</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Self Certificate</td>
+            <td>15 Days</td>
+            <td>19</td>
+            <td class="td-green">19</td>
+            <td>0</td>
+            <td>12</td>
+            <td style="color:#ef5b2b;font-weight:600;">0</td>
+            <td>₹1,09,579</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Boiler Manufacturer</td>
+            <td>30 Days</td>
+            <td>3</td>
+            <td class="td-green">3</td>
+            <td>17</td>
+            <td>24</td>
+            <td class="td-red">29</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Raj<span>FAB</span></div>
+      <div class="footer-brand-sub">Factories &amp; Boiler Inspection Dept.</div>
+      <p class="footer-desc">
+        Factories &amp; Boilers Inspection Department, Government of Rajasthan. Digital platform for factory and boiler registration, inspection, and certification.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <a href="#" class="footer-link">Home</a>
+      <a href="#" class="footer-link">Services</a>
+      <a href="#" class="footer-link">Dashboard</a>
+      <a href="#" class="footer-link">Resources</a>
+      <a href="#" class="footer-link">Help</a>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Important Links</div>
+      <a href="#" class="footer-link">MSME Ordinance 2019</a>
+      <a href="#" class="footer-link">National Portal</a>
+      <a href="#" class="footer-link">Rajasthan Portal</a>
+      <a href="#" class="footer-link">Rajasthan Legislative Assembly</a>
+      <a href="#" class="footer-link">National career service</a>
+      <a href="#" class="footer-link">Shram Suvidha Portal</a>
+      <a href="#" class="footer-link">RAJNIVESH Portal</a>
+      <a href="#" class="footer-link underline-link">View more</a>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Contact Us</div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/mappin.svg" width="14" height="14"/></svg>
+        <span>6-c Jhalana Institutional Area, Behind Commerce College, JLN Marg, Jaipur-302004 (Rajasthan)</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/phone.svg" width="14" height="14"/></svg>
+        1800-180-6127 (Toll Free)
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/email.svg" width="14" height="14"/></svg>
+        <a href="mailto:support@rajfab.rajasthan.gov.in">support@rajfab.rajasthan.gov.in</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-border-top">
+    <div class="footer-nodal">
+      Nodal Officer: Shri Chandra Veer Charan, SIFB(TA), Jaipur &nbsp;|&nbsp; +91 141 2709659 &nbsp;|&nbsp;
+      <a href="mailto:sifb.ta@rajasthan.gov.in">sifb.ta@rajasthan.gov.in</a>
+      &nbsp;|&nbsp; Updated on : 25-05-2026
+    </div>
+    <div class="footer-bottom">
+      <span>© 2019 RajFAB — Government of Rajasthan. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of use</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// TABS
+const tabs = document.querySelectorAll('.tab-btn');
+const contents = document.querySelectorAll('.tab-content');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// CHART - matching screenshot colors per service pair
+const ctx = document.getElementById('dashboardChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [
+      'Factory Auto Renew.',
+      'Plan Approval',
+      'Plan Amend.',
+      'Boiler Reg.',
+      'Boiler Renew.',
+      'Factory Reg.',
+      'Factory Amend.',
+      'Self Certificate',
+      'Boiler Manufacturer'
+    ],
+    datasets: [
+      {
+        label: 'Received',
+        data: [10929, 4019, 286, 986, 10170, 3860, 4721, 19, 3],
+        backgroundColor: [
+          '#c7d2f8', // Factory Auto - light blue
+          '#c7d2f8', // Plan Approval - light blue/purple
+          '#d8d5f8', // Plan Amend - light purple
+          '#fcd9b6', // Boiler Reg - light orange
+          '#fcd9b6', // Boiler Renew - light orange
+          '#bbf0d6', // Factory Reg - light green
+          '#bbf0d6', // Factory Amend - light teal
+          '#c7d2f8', // Self Cert - light blue
+          '#c7d2f8', // Boiler Mfr - light blue
+        ],
+        borderRadius: 5,
+        barPercentage: 0.42,
+        categoryPercentage: 0.75
+      },
+      {
+        label: 'Approved',
+        data: [10929, 4019, 286, 986, 10170, 3860, 4721, 19, 3],
+        backgroundColor: [
+          '#2950B8', // Factory Auto - blue
+          '#3b4fd4', // Plan Approval - indigo
+          '#6B52D4', // Plan Amend - purple
+          '#D97B25', // Boiler Reg - orange
+          '#D97B25', // Boiler Renew - orange
+          '#17A34A', // Factory Reg - green
+          '#0d9488', // Factory Amend - teal
+          '#2950B8', // Self Cert - blue
+          '#2950B8', // Boiler Mfr - blue
+        ],
+        borderRadius: 5,
+        barPercentage: 0.42,
+        categoryPercentage: 0.75
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+        labels: { font: { family: 'Poppins', size: 12 }, padding: 16 }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: {
+          font: { family: 'Poppins', size: 11 },
+          color: '#6b7280',
+          maxRotation: 35,
+          minRotation: 35
+        }
+      },
+      y: {
+        grid: { color: '#f0f2f5', lineWidth: 1.5, drawBorder: false },
+        border: { dash: [4,4], display: false },
+        ticks: { font: { family: 'Poppins', size: 11 }, color: '#6b7280' }
+      }
+    }
+  }
+});
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>

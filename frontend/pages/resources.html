@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources & Documents – RajFAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
+    svg { display: block; }
+
+    .topbar { background: #1a2a4a; height: 34px; display: flex; align-items: center; padding: 0 24px; justify-content: space-between; }
+    .topbar-left { display: flex; align-items: center; gap: 16px; color: #a0aec0; font-size: 12px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; color: #a0aec0; font-size: 12px; }
+    .topbar-right a { color: #a0aec0; text-decoration: none; }
+    .topbar-sep { color: #4a5568; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: #fff; height: 64px; display: flex; align-items: center; padding: 0 80px; border-bottom: 1px solid #e8ecf0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; }
+    .brand-text-main { font-size: 20px; font-weight: 800; color: #0f2454; letter-spacing: -0.3px; }
+    .brand-text-main span { color: #1D3680; }
+    .brand-sub { font-size: 11px; color: #6b7280; font-weight: 400; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; margin-left: 120px; gap: 2px; }
+    .nav-link{
+  padding: 7px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.nav-link:not(.active):hover{
+  background: #f3f4f6;
+}
+.nav-link.active{
+  background: #1D3680;
+  color: #fff;
+}
+.nav-link.active:hover{
+  background: #1D3680;
+  color: #fff;
+}
+
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .bell-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e5e7eb; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .login-btn { color: #131212; padding: 8px 20px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; }
+
+
+    .nav-dropdown-wrap { position: relative; }
+    .nav-dropdown-wrap .dropdown-menu { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 320px; background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.06); border: 1px solid #e8ecf0; z-index: 999; padding: 20px 0 10px; overflow: hidden; }
+    .nav-dropdown-wrap:hover .dropdown-menu, .nav-dropdown-wrap:focus-within .dropdown-menu { display: block; }
+    .nav-dropdown-wrap .dropdown-menu::before { content: ''; position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; background: #fff; border-left: 1px solid #e8ecf0; border-top: 1px solid #e8ecf0; transform: translateX(-50%) rotate(45deg); }
+    .dropdown-header { font-size: 11px; font-weight: 800; color: #1D3680; letter-spacing: 1.2px; text-transform: uppercase; padding: 0 20px 12px; border-bottom: 1px solid #e8ecf0; margin-bottom: 6px; }
+    .dropdown-item { display: flex; align-items: center; gap: 14px; padding: 13px 20px; cursor: pointer; text-decoration: none; transition: background 0.1s; }
+    .dropdown-item:hover { background: #f5f7fa; }
+    .dropdown-link-icon { width: 40px; height: 40px; flex-shrink: 0; background: #eef0f8; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .dropdown-item-text { flex: 1; min-width: 0; }
+    .dropdown-item-title { font-size: 14px; font-weight: 700; color: #111827; text-decoration: underline; text-underline-offset: 2px; margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
+    .dropdown-item-sub { font-size: 12.5px; color: #6b7280; display: flex; align-items: center; gap: 5px; text-decoration: underline; text-underline-offset: 2px; }
+    .ext-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
+
+    .page-wrap { background: #f5f7fa; min-height: calc(100vh - 98px); padding: 52px 80px 60px; }
+
+    .page-title-block { text-align: center; margin-bottom: 36px; }
+    .page-title { font-size: 30px; font-weight: 800; color: #111827; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .page-subtitle { font-size: 14px; color: #6b7280; font-weight: 400; }
+
+    .search-wrap { margin-bottom: 0; }
+    .doc-search { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0 18px; height: 46px; width: 100%; margin-bottom: 16px; }
+    .doc-search input { flex: 1; border: none; outline: none; font-size: 14px; color: #374151; background: transparent; }
+    .doc-search input::placeholder { color: #9ca3af; }
+
+    /* pill tabs — separate inside a pill container */
+    .tabs-row {
+      display: flex; align-items: center; gap: 4px;
+      background: #eef0f5;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 5px 6px;
+      margin-bottom: 16px;
+    }
+    .tab-btn {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      flex: 1;
+      padding: 9px 12px;
+      font-size: 13px; font-weight: 500;
+      border: none; border-radius: 7px;
+      background: transparent; color: #374151;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.12s, color 0.12s;
+    }
+    .tab-btn:hover { background: #fff; }
+    .tab-btn.active { background: #1D3680; color: #fff; font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+    .tab-btn svg { flex-shrink: 0; }
+
+    /* document list */
+    .doc-list { display: flex; flex-direction: column; gap: 0; background: #fff; border: 1px solid #e5e7eb; border-radius: 0 0 12px 12px; overflow: hidden; }
+    .doc-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid #f3f4f6; cursor: pointer; transition: background 0.1s; }
+    .doc-row:last-child { border-bottom: none; }
+    .doc-row:hover { background: #f9fafb; }
+    .doc-row.highlighted { background: #f0f4ff; }
+    .doc-row.highlighted:hover { background: #e8efff; }
+
+    .doc-icon-wrap { width: 36px; height: 36px; flex-shrink: 0; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb; display: flex; align-items: center; justify-content: center; }
+    .doc-info { flex: 1; min-width: 0; }
+    .doc-name { font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .doc-meta { font-size: 12px; color: #9ca3af; display: flex; align-items: center; gap: 6px; }
+    .doc-meta-dot { font-size: 10px; }
+    .doc-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .doc-tag { padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; cursor: pointer; }
+    .doc-tag-pdf { background: #fee2e2; color: #dc2626; }
+    .doc-dl-btn { width: 32px; height: 32px; border: 1px solid #e5e7eb; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: #fff; cursor: pointer; color: #6b7280; transition: background 0.1s; }
+    .doc-dl-btn:hover { background: #f3f4f6; }
+
+    /* hidden rows */
+    .doc-row.hidden { display: none; }
+
+    .browse-row { display: flex; justify-content: flex-end; margin-top: 20px; }
+    .browse-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #1D3680; text-decoration: none; cursor: pointer; }
+    .browse-link:hover { text-decoration: underline; }
+
+    .footer { background: #0D121F; padding: 56px 160px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.6fr 1.8fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand-name { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .footer-brand-sub { font-size: 11.5px; color: #FFFFFF99; margin-bottom: 16px; }
+    .footer-desc { font-size: 13px; color: #FFFFFF99; line-height: 1.65; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+    .footer-link { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 10px; cursor: pointer; }
+    .footer-link:hover { color: #FFFFFF99; }
+    .footer-link.underline-link { text-decoration: underline; color: #FFFFFF99; }
+    .footer-contact-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #94a3b8; line-height: 1.5; }
+    .footer-contact-item a { color: #94a3b8; text-decoration: none; }
+    .footer-border-top { border-top: 1px solid rgba(255,255,255,0.08); }
+    .footer-nodal { padding: 14px 0; text-align: center; font-size: 12px; color: #FFFFFF99; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-nodal a { color: #f8fafc; text-decoration: none; }
+    .footer-bottom { padding: 16px 0; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { color: #FFFFFF99; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span style="display:flex;align-items:center;gap:6px;">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><rect width="18" height="4" fill="#FF9933"/><rect y="4" width="18" height="4" fill="white"/><rect y="8" width="18" height="4" fill="#138808"/><circle cx="9" cy="6" r="1.5" fill="#000080"/></svg>
+      <span style="color:#c9d5e8;">English</span>
+    </span>
+    <span class="topbar-sep">|</span>
+    <span style="display:flex;align-items:center;gap:5px;color:#c9d5e8;">
+      <svg width="12" height="12" fill="none" stroke="#c9d5e8" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.28 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.18a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      Helpline: 1800-180-6030
+    </span>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Skip to Content</a>
+    <span class="topbar-sep">|</span>
+    <span style="font-weight:700;color:#c9d5e8;cursor:pointer;">A+</span>
+    <span style="color:#c9d5e8;font-size:13px;cursor:pointer;">A-</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+      <img src="/frontend/assets/icons/pngwing.com 1 (1).svg" alt="Logo" style="width:36px;height:36px;object-fit:contain;" />
+    </div>
+    <div>
+      <div class="brand-text-main">RajFAB</div>
+      <div class="brand-sub">Factory &amp; Boiler Inspection Dept.</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="/frontend/index.html" class="nav-link">Home</a>
+    <a href="/frontend/pages/services.html" class="nav-link">Services</a>
+    <a href="/frontend/pages/dashboard.html" class="nav-link">Dashboard</a>
+    <a href="/frontend/pages/resources.html" class="nav-link active">Resources &amp; Documents</a>
+    <div class="nav-dropdown-wrap">
+      <a href="#" class="nav-link" style="user-select:none;">
+        Useful Links
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <div class="dropdown-menu">
+        <div class="dropdown-header">Useful Links</div>
+        <a href="https://www.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">Rajasthan Government</div>
+            <div class="dropdown-item-sub">Official Govt. of Rajasthan portal</div>
+          </div>
+        </a>
+        <a href="https://rajnivesh.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">Raj Nivesh Portal</div>
+            <div class="dropdown-item-sub">Investment &amp; industry application</div>
+          </div>
+        </a>
+        <a href="https://emitra.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">E-Mitra Services</div>
+            <div class="dropdown-item-sub">citizen services through e-Mitra</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <a href="/frontend/pages/help.html" class="nav-link">Help</a>
+  </div>
+  <div class="nav-right">
+    <div class="bell-btn">
+      <a href="/frontend/pages/notifications.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </a>
+    </div>
+    <a href="#" class="login-btn">Log in</a>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page-wrap">
+
+  <div class="page-title-block">
+    <div class="page-title">Resources &amp; Documents</div>
+    <div class="page-subtitle">Acts, rules, forms, Publications in one place</div>
+  </div>
+
+  <!-- search bar -->
+  <div class="search-wrap">
+    <div class="doc-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="flex-shrink:0;display:inline-block;"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search documents..." />
+    </div>
+  </div>
+
+  <!-- segmented tab control -->
+  <div class="tabs-row">
+    <button class="tab-btn active" data-tab="acts">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Acts &amp; Rules
+    </button>
+    <button class="tab-btn" data-tab="circulars">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Circulars
+    </button>
+    <button class="tab-btn" data-tab="forms">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      Forms
+    </button>
+    <button class="tab-btn" data-tab="safety">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Safety Guides
+    </button>
+    <button class="tab-btn" data-tab="annual">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Annuals Reports
+    </button>
+  </div>
+
+  <!-- document rows — each tagged with data-tab -->
+  <div class="doc-list" id="docList">
+
+    <!-- acts rows -->
+    <div class="doc-row highlighted" data-tab="acts">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">The Boilers Act</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.4 MB</span></div>
+      </div>
+      <div class="doc-actions">
+        <span class="doc-tag doc-tag-pdf">PDF</span>
+        <div class="doc-dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="display:inline-block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </div>
+    </div>
+
+    <div class="doc-row" data-tab="acts">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Notification w.r.t Boilers Act</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <div class="doc-row" data-tab="acts">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Boiler Accident Inquiry Rules</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <div class="doc-row" data-tab="acts">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Boiler Operation Engineers' Rules</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <div class="doc-row" data-tab="acts">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Central Boilers Board (Nomination of Members) Rules</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <div class="doc-row" data-tab="acts">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Chief Inspectors, Deputy Chief Inspectors and Inspectors (qualification and experience) Rules</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <!-- circulars rows -->
+    <div class="doc-row highlighted hidden" data-tab="circulars">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Circular on Factory Inspection Frequency 2025</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>1.2 MB</span></div>
+      </div>
+      <div class="doc-actions">
+        <span class="doc-tag doc-tag-pdf">PDF</span>
+        <div class="doc-dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="display:inline-block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </div>
+    </div>
+    <div class="doc-row hidden" data-tab="circulars">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Boiler Certificate Extension Order 2025</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>0.9 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="circulars">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">MSME Relief Circular – Factories Compliance</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>1.1 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="circulars">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Silicosis Awareness Programme Circular 2024</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>0.7 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="circulars">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Industrial Hygiene Lab Testing Notification</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>0.8 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="circulars">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Third Party Inspection Empanelment Circular</div>
+        <div class="doc-meta"><span>2023</span><span class="doc-meta-dot">•</span><span>1.3 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <!-- forms rows -->
+    <div class="doc-row highlighted hidden" data-tab="forms">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Form No. 1 – Application for Factory Registration</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>0.5 MB</span></div>
+      </div>
+      <div class="doc-actions">
+        <span class="doc-tag doc-tag-pdf">PDF</span>
+        <div class="doc-dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="display:inline-block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </div>
+    </div>
+    <div class="doc-row hidden" data-tab="forms">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Form No. 2 – Factory License Renewal Application</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>0.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="forms">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Form No. 3 – Boiler Registration Application</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>0.6 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="forms">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Form No. 4 – Boiler Certificate Renewal Form</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>0.5 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="forms">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Form No. 7 – Accident Reporting Form</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>0.3 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="forms">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Form No. 9 – Self Certification Declaration</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>0.4 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <!-- safety rows -->
+    <div class="doc-row highlighted hidden" data-tab="safety">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Factory Safety Manual – General Guidelines</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>3.1 MB</span></div>
+      </div>
+      <div class="doc-actions">
+        <span class="doc-tag doc-tag-pdf">PDF</span>
+        <div class="doc-dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="display:inline-block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </div>
+    </div>
+    <div class="doc-row hidden" data-tab="safety">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Silicosis Prevention &amp; Awareness Guide</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>2.2 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="safety">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Boiler Safety Operating Handbook</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>4.0 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="safety">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Occupational Health &amp; Hygiene Field Manual</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>2.8 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="safety">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Emergency Response Plan – Industrial Units</div>
+        <div class="doc-meta"><span>2023</span><span class="doc-meta-dot">•</span><span>1.9 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="safety">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Worker PPE Usage Guidelines</div>
+        <div class="doc-meta"><span>2023</span><span class="doc-meta-dot">•</span><span>1.1 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+    <!-- annual rows -->
+    <div class="doc-row highlighted hidden" data-tab="annual">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Annual Progress Report 2025–2026</div>
+        <div class="doc-meta"><span>2026</span><span class="doc-meta-dot">•</span><span>5.2 MB</span></div>
+      </div>
+      <div class="doc-actions">
+        <span class="doc-tag doc-tag-pdf">PDF</span>
+        <div class="doc-dl-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="display:inline-block;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      </div>
+    </div>
+    <div class="doc-row hidden" data-tab="annual">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Annual Progress Report 2024–2025</div>
+        <div class="doc-meta"><span>2025</span><span class="doc-meta-dot">•</span><span>4.8 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="annual">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Annual Progress Report 2023–2024</div>
+        <div class="doc-meta"><span>2024</span><span class="doc-meta-dot">•</span><span>4.3 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="annual">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Annual Progress Report 2022–2023</div>
+        <div class="doc-meta"><span>2023</span><span class="doc-meta-dot">•</span><span>3.9 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="annual">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Annual Progress Report 2021–2022</div>
+        <div class="doc-meta"><span>2022</span><span class="doc-meta-dot">•</span><span>3.6 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+    <div class="doc-row hidden" data-tab="annual">
+      <div class="doc-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.8" style="display:inline-block;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div class="doc-info">
+        <div class="doc-name">Annual Progress Report 2020–2021</div>
+        <div class="doc-meta"><span>2021</span><span class="doc-meta-dot">•</span><span>3.2 MB</span></div>
+      </div>
+      <div class="doc-actions"></div>
+    </div>
+
+  </div>
+
+  <div class="browse-row">
+    <a href="#" class="browse-link">
+      Browse All Documents
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Raj<span>FAB</span></div>
+      <div class="footer-brand-sub">Factories &amp; Boiler Inspection Dept.</div>
+      <p class="footer-desc">
+        Factories &amp; Boilers Inspection Department, Government of Rajasthan. Digital platform for factory and boiler registration, inspection, and certification.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <a href="#" class="footer-link">Home</a>
+      <a href="#" class="footer-link">Services</a>
+      <a href="#" class="footer-link">Dashboard</a>
+      <a href="#" class="footer-link">Resources</a>
+      <a href="#" class="footer-link">Help</a>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Important Links</div>
+      <a href="#" class="footer-link">MSME Ordinance 2019</a>
+      <a href="#" class="footer-link">National Portal</a>
+      <a href="#" class="footer-link">Rajasthan Portal</a>
+      <a href="#" class="footer-link">Rajasthan Legislative Assembly</a>
+      <a href="#" class="footer-link">National career service</a>
+      <a href="#" class="footer-link">Shram Suvidha Portal</a>
+      <a href="#" class="footer-link">RAJNIVESH Portal</a>
+      <a href="#" class="footer-link underline-link">View more</a>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Contact Us</div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/mappin.svg" width="14" height="14"/></svg>
+        <span>6-c Jhalana Institutional Area, Behind Commerce College, JLN Marg, Jaipur-302004 (Rajasthan)</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/phone.svg" width="14" height="14"/></svg>
+        1800-180-6127 (Toll Free)
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/email.svg" width="14" height="14"/></svg>
+        <a href="mailto:support@rajfab.rajasthan.gov.in">support@rajfab.rajasthan.gov.in</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-border-top">
+    <div class="footer-nodal">
+      Nodal Officer: Shri Chandra Veer Charan, SIFB(TA), Jaipur &nbsp;|&nbsp; +91 141 2709659 &nbsp;|&nbsp;
+      <a href="mailto:sifb.ta@rajasthan.gov.in">sifb.ta@rajasthan.gov.in</a>
+      &nbsp;|&nbsp; Updated on : 25-05-2026
+    </div>
+    <div class="footer-bottom">
+      <span>© 2019 RajFAB — Government of Rajasthan. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of use</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const rows = document.querySelectorAll('.doc-row');
+  const searchInput = document.getElementById('searchInput');
+
+  // switch tab
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      filterRows();
+    });
+  });
+
+  // search filter
+  searchInput.addEventListener('input', filterRows);
+
+  function filterRows() {
+    const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+    const query = searchInput.value.toLowerCase();
+
+    rows.forEach(row => {
+      const tabMatch = row.dataset.tab === activeTab;
+      const textMatch = !query || row.querySelector('.doc-name').textContent.toLowerCase().includes(query);
+      row.classList.toggle('hidden', !(tabMatch && textMatch));
+    });
+  }
+</script>
+<script src="script.js"></script>
+
+
+</body>
+</html>
