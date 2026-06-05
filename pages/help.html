@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help — RajFAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            navy: '#0f2454',
+            'navy-dark': '#0a1a3e',
+            'navy-deeper': '#091530',
+            green: '#4caf50',
+            'green-light': '#6fcf7a',
+            'blue-stat': 'rgba(255,255,255,0.12)',
+            amber: '#f5a623',
+            'ticker-amber': '#f59e0b',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+   * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      overflow-x: hidden;
+    }
+    
+    /* ── TOP BAR ── */
+    .topbar { background: #1a2a4a; height: 34px; display: flex; align-items: center; padding: 0 24px; justify-content: space-between; }
+    .topbar-left { display: flex; align-items: center; gap: 16px; color: #a0aec0; font-size: 12px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; color: #a0aec0; font-size: 12px; }
+    .topbar-right a { color: #a0aec0; text-decoration: none; }
+    .topbar-sep { color: #4a5568; }
+    .font-size-btn { cursor: pointer; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: #fff; height: 64px; display: flex; align-items: center; padding: 0 80px; border-bottom: 1px solid #e8ecf0; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; }
+    .brand-text-main { font-size: 20px; font-weight: 800; color: #0f2454; letter-spacing: -0.3px; }
+    .brand-text-main span { color: #1D3680; }
+    .brand-sub { font-size: 11px; color: #6b7280; font-weight: 400; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; margin-left: 120px; gap: 2px; }
+    .nav-link{
+  padding: 7px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.nav-link:not(.active):hover{
+  background: #f3f4f6;
+}
+.nav-link.active{
+  background: #1D3680;
+  color: #fff;
+}
+.nav-link.active:hover{
+  background: #1D3680;
+  color: #fff;
+}
+
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .bell-btn { width: 36px; height: 36px;  border: 1px solid  #d1d5db; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .login-btn { color: #131212; padding: 8px 20px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; }
+    
+    /* ── DROPDOWN ── */
+  .nav-dropdown-wrap { position: relative; }
+
+  .nav-dropdown-wrap .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid #e8ecf0;
+    z-index: 999;
+    padding: 20px 0 10px;
+    overflow: hidden;
+  }
+
+  /* show on hover */
+  .nav-dropdown-wrap:hover .dropdown-menu,
+  .nav-dropdown-wrap:focus-within .dropdown-menu {
+    display: block;
+  }
+
+  /* small arrow pointer at top */
+  .nav-dropdown-wrap .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px; height: 14px;
+    background: #fff;
+    border-left: 1px solid #e8ecf0;
+    border-top: 1px solid #e8ecf0;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .dropdown-header {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1D3680;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 0 20px 12px;
+    border-bottom: 1px solid #e8ecf0;
+    margin-bottom: 6px;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+  .dropdown-item:hover { background: #f5f7fa; }
+
+  .dropdown-link-icon {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    background: #eef0f8;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .dropdown-item-text { flex: 1; min-width: 0; }
+
+  .dropdown-item-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-bottom: 3px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .dropdown-item-sub {
+    font-size: 12.5px;
+    color: #6b7280;
+    font-weight: 400;
+    display: flex; align-items: center; gap: 5px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* external link icon inline */
+  .ext-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+    
+    
+    
+    /* ── MAIN CONTENT WRAPPER ── */
+    .page-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 100px;
+    }
+
+    /* ── HERO SECTION ── */
+    .help-hero {
+      background: #f3f4f6;
+      padding: 80px 100px 52px;
+      text-align: center;
+    }
+    .help-hero h1 {
+      font-size: 52px;
+      font-weight: 900;
+      color: #0D1B4B;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+    .help-hero p {
+      font-size: 16px;
+      color: #6b7280;
+      font-weight: 400;
+      margin-bottom: 44px;
+    }
+
+    /* ── SEARCH BAR ── */
+    .search-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      height: 56px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      padding: 0 24px 0 52px;
+      font-size: 15.5px;
+      color: #374151;
+      outline: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      font-family: inherit;
+    }
+    .search-wrap input::placeholder { color: #9ca3af; }
+    .search-wrap input:focus {
+      border-color: #1D3680;
+      box-shadow: 0 0 0 3px rgba(29,54,128,0.08);
+    }
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── CONTACT CARDS ── */
+    .contact-cards {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .contact-card {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 40px 28px 36px;
+      text-align: center;
+    }
+    .card-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: #eaecf5;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .contact-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+    .contact-card .card-primary {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #1D3680;
+      margin-bottom: 6px;
+    }
+    .contact-card .card-secondary {
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    /* ── FAQ SECTION ── */
+    .faq-section {
+      max-width: 1200px;
+      margin: 56px auto 80px;
+      padding: 0 100px;
+    }
+    .faq-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1D3680;
+      margin-bottom: 18px;
+      letter-spacing: 0.1px;
+    }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .faq-item {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: background 0.1s;
+      font-family: inherit;
+    }
+    .faq-question:hover { background: #f9fafb; }
+    .faq-item.open .faq-question { background: #f3f4f6; }
+    .faq-chevron {
+      flex-shrink: 0;
+      color: #6b7280;
+      transition: transform 0.2s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: #1D3680; }
+    .faq-answer {
+      display: none;
+      padding: 6px 22px 22px;
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.7;
+      background: #f3f4f6;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    
+/* ── FOOTER ── */
+    .footer { background: #0D121F; padding: 56px 160px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.6fr 1.8fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand-name { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .footer-brand-name span { color: #f9f9fa; }
+    .footer-brand-sub { font-size: 11.5px; color: #FFFFFF99; margin-bottom: 16px; }
+    .footer-desc { font-size: 13px; color: #FFFFFF99; line-height: 1.65; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+    .footer-link { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 10px; cursor: pointer; }
+    .footer-link:hover { color: #FFFFFF99; }
+    .footer-link.underline-link { text-decoration: underline; color: #FFFFFF99; }
+    .footer-contact-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #94a3b8; line-height: 1.5; }
+    .footer-contact-item a { color: #94a3b8; text-decoration: none; }
+    .footer-border-top { border-top: 1px solid rgba(255,255,255,0.08); }
+    .footer-nodal { padding: 14px 0; text-align: center; font-size: 12px; color: #FFFFFF99; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .footer-nodal a { color: #f8fafc; text-decoration: none; }
+    .footer-bottom { padding: 16px 0; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { color: #FFFFFF99; text-decoration: none; }
+    .footer-bottom-links a:hover { color: #FFFFFF99; }
+
+    .icon { display: inline-flex; }
+    svg { display: block; }
+
+
+  </style>
+</head>
+<body>
+
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span style="display:flex;align-items:center;gap:6px;">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="18" height="4" fill="#FF9933"/>
+        <rect y="4" width="18" height="4" fill="white"/>
+        <rect y="8" width="18" height="4" fill="#138808"/>
+        <circle cx="9" cy="6" r="1.5" fill="#000080"/>
+      </svg>
+      <span style="color:#c9d5e8;">English</span>
+    </span>
+    <span class="topbar-sep">|</span>
+    <span style="display:flex;align-items:center;gap:5px;color:#c9d5e8;">
+      <svg width="12" height="12" fill="none" stroke="#c9d5e8" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.28 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.18a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      Helpline: 1800-180-6030
+    </span>
+  </div>
+  <div class="topbar-right">
+    <a href="#">Skip to Content</a>
+    <span class="topbar-sep">|</span>
+    <span class="font-size-btn" style="font-weight:700;color:#c9d5e8;">A+</span>
+    <span style="color:#c9d5e8;font-size:13px;">A-</span>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+      <img src="/assets/icons/pngwing.com 1 (1).svg" alt="Logo" style="width:36px;height:36px;object-fit:contain;" />
+    </div>
+    <div>
+      <div class="brand-text-main">RajFAB</div>
+      <div class="brand-sub">Factory &amp; Boiler Inspection Dept.</div>
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="/index.html" class="nav-link">Home</a>
+    <a href="/pages/services.html" class="nav-link">Services</a>
+    <a href="/pages/dashboard.html" class="nav-link">Dashboard</a>
+    <a href="/pages/resources.html" class="nav-link">Resources &amp; Documents</a>
+
+    <!-- USEFUL LINKS with dropdown -->
+    <div class="nav-dropdown-wrap">
+      <a href="#" class="nav-link" style="user-select:none;">
+        Useful Links
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+
+      <div class="dropdown-menu">
+        <div class="dropdown-header">Useful Links</div>
+
+        <!-- Item 1 -->
+        <a href="https://www.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Rajasthan Government
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Official Govt. of Rajasthan portal
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="https://rajnivesh.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Raj Nivesh Portal
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Investment &amp; industry application
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="https://emitra.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              E-Mitra Services
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              citizen services through e-Mitra
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 4 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Office &amp; Telephone Directory
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              All regional office contact
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 5 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              MSME ordinance 2019
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              MSME relief and compliance info
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 6 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Citizen Charter
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Department services standards
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+      </div><!-- /dropdown-menu -->
+    </div><!-- /nav-dropdown-wrap -->
+
+    <a href="/pages/help.html" class="nav-link active">Help</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="bell-btn">
+      <a href="/pages/notifications.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </a>
+    </div>
+    <a href="#" class="login-btn">Log in</a>
+  </div>
+</nav>
+<!-- HERO + SEARCH + CARDS — full-bleed background -->
+<section class="help-hero">
+  <h1>How can we help you?</h1>
+  <p>Search our FAQ or contact us directly</p>
+
+  <div class="search-wrap">
+    <span class="search-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input type="text" placeholder="Search for help topic..." />
+  </div>
+
+  <!-- CONTACT CARDS -->
+  <div class="contact-cards">
+    <!-- Call us -->
+    <div class="contact-card">
+      <div class="card-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5b6ea8" stroke-width="1.8">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.28 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.18a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/>
+        </svg>
+      </div>
+      <h3>Call us</h3>
+      <div class="card-primary">1800-180-6127 (Toll Free)</div>
+      <div class="card-secondary">Mon–Sat, 9:00 AM – 6:00 PM</div>
+    </div>
+
+    <!-- Email Support -->
+    <div class="contact-card">
+      <div class="card-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5b6ea8" stroke-width="1.8">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <h3>Email Support</h3>
+      <div class="card-primary">support@rajfab.rajasthan.gov.in</div>
+      <div class="card-secondary">Response within 24 hours</div>
+    </div>
+
+    <!-- Live chat -->
+    <div class="contact-card">
+      <div class="card-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5b6ea8" stroke-width="1.8">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      </div>
+      <h3>Live chat</h3>
+      <div class="card-primary">Get instant answers</div>
+      <div class="card-secondary">Available 24/7</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<div class="faq-section">
+  <div class="faq-title">Frequently Asked Questions</div>
+  <div class="faq-list">
+
+    <div class="faq-item open">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I register a new factory?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 15l-6-6-6 6"/></svg>
+      </button>
+      <div class="faq-answer">
+        Click on 'Apply for License' from the homepage, select 'Factory Registration', and follow the multi-step form. You'll need your business documents, site plan, and identity proof.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How long does the approval process take?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        The approval process typically takes 15–30 working days from the date of complete document submission. You will receive status updates via SMS and email at each stage.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What documents are required for boiler registration?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        You will need the manufacturer's certificate, test certificate, insurance documents, site plan, and owner's identity proof. All documents must be attested copies.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How can I renew my factory license?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        Log into your dashboard, navigate to 'My Licenses', and click 'Renew' next to your license. Pay the applicable fee and submit the renewal form at least 30 days before expiry.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I verify the authenticity of a certificate?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        Yes. Visit the 'Verify Certificate' page from the homepage and enter the certificate number. The system will display the certificate status and details instantly.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What payment methods are accepted?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        Payments can be made through Net Banking, Debit/Credit Card, UPI, and e-Mitra kiosks. All transactions are processed through the Rajasthan government's secure payment gateway.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I schedule an inspection?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        After submitting your application, an inspection is automatically scheduled. You may also request an inspection from your Dashboard under 'Schedule Inspection'. You'll be notified of the date and time in advance.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What if my application is rejected?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-answer">
+        If your application is rejected, you will receive a detailed reason via email. You can address the issues and re-submit your application. Alternatively, contact our helpline for further assistance.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Raj<span>FAB</span></div>
+      <div class="footer-brand-sub">Factories &amp; Boiler Inspection Dept.</div>
+      <p class="footer-desc">
+        Factories &amp; Boilers Inspection Department, Government of Rajasthan. Digital platform for factory and boiler registration, inspection, and certification.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <a href="#" class="footer-link">Home</a>
+      <a href="#" class="footer-link">Services</a>
+      <a href="#" class="footer-link">Dashboard</a>
+      <a href="#" class="footer-link">Resources</a>
+      <a href="#" class="footer-link">Help</a>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Important Links</div>
+      <a href="#" class="footer-link">MSME Ordinance 2019</a>
+      <a href="#" class="footer-link">National Portal</a>
+      <a href="#" class="footer-link">Rajasthan Portal</a>
+      <a href="#" class="footer-link">Rajasthan Legislative Assembly</a>
+      <a href="#" class="footer-link">National career service</a>
+      <a href="#" class="footer-link">Shram Suvidha Portal</a>
+      <a href="#" class="footer-link">RAJNIVESH Portal</a>
+      <a href="#" class="footer-link underline-link">View more</a>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Contact Us</div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"> <img src="/assets/icons/mappin.svg" width="14" height="14"/></svg>
+        <span>6-c Jhalana Institutional Area, Behind Commerce College, JLN Marg, Jaipur-302004 (Rajasthan)</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/assets/icons/phone.svg" width="14" height="14"/></svg>
+        1800-180-6127 (Toll Free)
+      </div>
+      <div class="footer-contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"> <img src="/assets/icons/email.svg" width="14" height="14"/></svg>
+        <a href="mailto:support@rajfab.rajasthan.gov.in">support@rajfab.rajasthan.gov.in</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-border-top">
+    <div class="footer-nodal">
+      Nodal Officer: Shri Chandra Veer Charan, SIFB(TA), Jaipur &nbsp;|&nbsp; +91 141 2709659 &nbsp;|&nbsp;
+      <a href="mailto:sifb.ta@rajasthan.gov.in">sifb.ta@rajasthan.gov.in</a>
+      &nbsp;|&nbsp; Updated on : 25-05-2026
+    </div>
+    <div class="footer-bottom">
+      <span>© 2019 RajFAB — Government of Rajasthan. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of use</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      const ch = i.querySelector('.faq-chevron');
+      if (ch) ch.innerHTML = '<path d="M6 9l6 6 6-6"/>';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      const ch = item.querySelector('.faq-chevron');
+      if (ch) ch.innerHTML = '<path d="M18 15l-6-6-6 6"/>';
+    }
+  }
+</script>
+
+</body>
+</html>

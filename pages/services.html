@@ -53,7 +53,7 @@
 }
 
     .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-    .bell-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e5e7eb; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .bell-btn { width: 36px; height: 36px;  border: 1px solid  #d1d5db; border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     .login-btn { color: #131212; padding: 8px 20px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; }
 
     /* dropdownwrpa */
@@ -167,10 +167,12 @@
 </div>
 
 <!-- NAVBAR -->
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="navbar-brand">
     <div style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-      <img src="/frontend/assets/icons/pngwing.com 1 (1).svg" alt="Logo" style="width:36px;height:36px;object-fit:contain;" />
+      <img src="/assets/icons/pngwing.com 1 (1).svg" alt="Logo" style="width:36px;height:36px;object-fit:contain;" />
     </div>
     <div>
       <div class="brand-text-main">RajFAB</div>
@@ -179,48 +181,132 @@
   </div>
 
   <div class="nav-links">
-    <a href="/frontend/index.html" class="nav-link">Home</a>
-    <a href="/frontend/pages/services.html" class="nav-link active">Services</a>
-    <a href="/frontend/pages/dashboard.html" class="nav-link">Dashboard</a>
-    <a href="/frontend/pages/resources.html" class="nav-link">Resources &amp; Documents</a>
+    <a href="/index.html" class="nav-link">Home</a>
+    <a href="/pages/services.html" class="nav-link active">Services</a>
+    <a href="/pages/dashboard.html" class="nav-link">Dashboard</a>
+    <a href="/pages/resources.html" class="nav-link">Resources &amp; Documents</a>
 
+    <!-- USEFUL LINKS with dropdown -->
     <div class="nav-dropdown-wrap">
       <a href="#" class="nav-link" style="user-select:none;">
         Useful Links
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </a>
+
       <div class="dropdown-menu">
         <div class="dropdown-header">Useful Links</div>
-        <a href="https://www.rajasthan.gov.in" target="_blank" class="dropdown-item">
-          <div class="dropdown-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
-          <div class="dropdown-item-text">
-            <div class="dropdown-item-title">Rajasthan Government <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></div>
-            <div class="dropdown-item-sub">Official Govt. of Rajasthan portal</div>
-          </div>
-        </a>
-        <a href="https://rajnivesh.rajasthan.gov.in" target="_blank" class="dropdown-item">
-          <div class="dropdown-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
-          <div class="dropdown-item-text">
-            <div class="dropdown-item-title">Raj Nivesh Portal</div>
-            <div class="dropdown-item-sub">Investment &amp; industry application</div>
-          </div>
-        </a>
-        <a href="https://emitra.rajasthan.gov.in" target="_blank" class="dropdown-item">
-          <div class="dropdown-link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
-          <div class="dropdown-item-text">
-            <div class="dropdown-item-title">E-Mitra Services</div>
-            <div class="dropdown-item-sub">citizen services through e-Mitra</div>
-          </div>
-        </a>
-      </div>
-    </div>
 
-    <a href="/frontend/pages/help.html" class="nav-link">Help</a>
+        <!-- Item 1 -->
+        <a href="https://www.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Rajasthan Government
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Official Govt. of Rajasthan portal
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="https://rajnivesh.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Raj Nivesh Portal
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Investment &amp; industry application
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="https://emitra.rajasthan.gov.in" target="_blank" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              E-Mitra Services
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              citizen services through e-Mitra
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 4 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Office &amp; Telephone Directory
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              All regional office contact
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 5 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              MSME ordinance 2019
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              MSME relief and compliance info
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Item 6 -->
+        <a href="#" class="dropdown-item">
+          <div class="dropdown-link-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="dropdown-item-text">
+            <div class="dropdown-item-title">
+              Citizen Charter
+              <span class="ext-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+            <div class="dropdown-item-sub">
+              Department services standards
+              <span class="ext-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+      </div><!-- /dropdown-menu -->
+    </div><!-- /nav-dropdown-wrap -->
+
+    <a href="/pages/help.html" class="nav-link">Help</a>
   </div>
 
   <div class="nav-right">
     <div class="bell-btn">
-      <a href="/frontend/pages/notifications.html">
+      <a href="/pages/notifications.html">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
       </a>
     </div>
@@ -259,10 +345,10 @@
       <div class="card-title">Factory Registration &amp; License</div>
       <div class="card-desc">Register your factory under the Factories Act, 1948. Procedure &amp; documents for registration, license grant, renewal and map approval.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Procedure &amp; Documents</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Time Limits</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Acts &amp; Rules</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Inspection Checklists</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Factories.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Procedure &amp; Documents</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/time_limit_procedure.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Time Limits</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Act_And_Rules.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Acts &amp; Rules</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/ProceduresFactory.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Inspection Checklists</a>
       </div>
       <a href="#" class="card-btn" style="background:#1D3680;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -278,8 +364,8 @@
       <div class="card-title" style="color:#065f46;">Occupational Health Services</div>
       <div class="card-desc">Medical check-ups by certified surgeons, Industrial Hygiene Laboratory air-pollutant sampling, and workplace safety training sessions.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Safety museum &amp; Training</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Industrial Hygiene Lab</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Factories.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Safety museum &amp; Training</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Factories.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Industrial Hygiene Lab</a>
       </div>
       <a href="#" class="card-btn" style="background:#065f46;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -290,13 +376,14 @@
         <div class="card-icon" style="background:#eef2ff;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D3680" stroke-width="1.7"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
         </div>
+        
         <span class="card-badge">Capacity Building</span>
       </div>
       <div class="card-title" style="color:#1D3680;">Safety Training Programs</div>
       <div class="card-desc">Regular factory safety trainings, Silicosis awareness programs, and Occupational Health Working Condition Rule sessions.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Training Calendar Apr–Jun 2026</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Silicosis Training Jan 2026</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/Notifications/Notification_20260330164604.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Training Calendar Apr–Jun 2026</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/Notifications/Notification_20260112141828.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Silicosis Training Jan 2026</a>
       </div>
       <a href="#" class="card-btn" style="background:#1D3680;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -312,10 +399,10 @@
       <div class="card-title" style="color:#92400e;">Boiler Registration &amp; License</div>
       <div class="card-desc">Register and certify boilers under the Boilers Act, 1923. Complete procedure for registration, grant of license, renewal and map approval.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Procedure &amp; Documents</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Time Limits</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Acts &amp; Rules</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Inspection Checklists</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/ProceduresBoiler.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Procedure &amp; Documents</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/time_limit_procedure.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Time Limits</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Act_And_Rules.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Acts &amp; Rules</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/ActsAndRules/selfcertificationscheme.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Inspection Checklists</a>
       </div>
       <a href="#" class="card-btn" style="background:#d97706;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -331,8 +418,8 @@
       <div class="card-title" style="color:#9a3412;">Boiler Certificate Renewal</div>
       <div class="card-desc">Renew your boiler certificate before expiry. Grant extension provisions under Sub-Section 3 of Section 38 of the Boilers Act, 2025.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Extension Guidelines 2025</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Rajasthan Boiler Draft Rules 2026</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/Notifications/Notification_20260513154538.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Extension Guidelines 2025</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Various_Forms_Download.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Rajasthan Boiler Draft Rules 2026</a>
       </div>
       <a href="#" class="card-btn" style="background:#ea580c;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -348,10 +435,10 @@
       <div class="card-title" style="color:#14532d;">Third Party / Self Certification</div>
       <div class="card-desc">Accreditation &amp; empanelment for third-party Boilers/Economizer certification. Self-certification scheme for factories &amp; risk classification.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Third Party Boilers/Economizer</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Self Certification – Boilers</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Third Party Factories</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Self Certification – Factories</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/Boiler_notification_selfcertification.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Third Party Boilers/Economizer</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/Boiler_notification_selfcertification.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Self Certification – Boilers</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/third_party_factory.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Third Party Factories</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/ActsAndRules/selfcertificationscheme.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Self Certification – Factories</a>
       </div>
       <a href="#" class="card-btn" style="background:#16a34a;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -367,8 +454,8 @@
       <div class="card-title" style="color:#065f46;">Certificate Verification</div>
       <div class="card-desc">Instantly verify the authenticity of any factory or boiler certificate issued by the department. Includes fees schedule lookup.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Verify Certificate Online</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Fees Schedule</a>
+        <a href="https://rajfab.rajasthan.gov.in/VerifyCertificate.aspx" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Verify Certificate Online</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Various_Forms_Download.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Fees Schedule</a>
       </div>
       <a href="#" class="card-btn" style="background:#059669;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -384,7 +471,7 @@
       <div class="card-title" style="color:#4c1d95;">Guide Me Wizard</div>
       <div class="card-desc">A step-by-step guide to find out the information on required clearances and approvals for starting your factory or boiler operation.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Launch Wizard</a>
+        <a href="https://rajfab.rajasthan.gov.in/GuidemeWizard.aspx" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Launch Wizard</a>
       </div>
       <a href="#" class="card-btn" style="background:#7c3aed;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -400,9 +487,9 @@
       <div class="card-title" style="color:#831843;">Forms, Circulars &amp; Downloads</div>
       <div class="card-desc">Access all official forms, notifications, circulars, orders and fee schedules. Includes RTI documents and website policies.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Fees Schedule &amp; Downloads</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Notification &amp; Circulars</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Annuals Progress Report 2025–2026</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Various_Forms_Download.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Fees Schedule &amp; Downloads</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Notifications_and_Circulars.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Notification &amp; Circulars</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Documents/Notifications/Notification_20260203172659.pdf" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Annuals Progress Report 2025–2026</a>
       </div>
       <a href="#" class="card-btn" style="background:#db2777;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -418,8 +505,8 @@
       <div class="card-title" style="color:#1e293b;">Offices &amp; Telephone Directory</div>
       <div class="card-desc">Find district office addresses, telephone numbers, and contact details for all regional offices of the department across Rajasthan.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Office &amp; Telephone Directory</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> E-Mitra Services</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Telephone_Directory.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Office &amp; Telephone Directory</a>
+        <a href="http://127.0.0.1:5500/pages/services.html#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> E-Mitra Services</a>
       </div>
       <a href="#" class="card-btn" style="background:#334155;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -435,9 +522,9 @@
       <div class="card-title" style="color:#1e3a8a;">RTI &amp; Website Policies</div>
       <div class="card-desc">A step-by-step guide to find out the information on required clearances and approvals for starting your factory or boiler operation.</div>
       <div class="card-links">
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> RTI Portal</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Accessibility Statement</a>
-        <a href="#" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Disclaimer</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/RTI.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> RTI Portal</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Accessibilitystatement.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Accessibility Statement</a>
+        <a href="https://rajfab.rajasthan.gov.in/web/Disclaimer.htm" class="card-link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Disclaimer</a>
       </div>
       <a href="#" class="card-btn" style="background:#2563eb;color:#fff;">Know more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="display:inline-block;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -480,15 +567,15 @@
     <div>
       <div class="footer-col-title">Contact Us</div>
       <div class="footer-contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/mappin.svg" width="14" height="14"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/assets/icons/mappin.svg" width="14" height="14"/></svg>
         <span>6-c Jhalana Institutional Area, Behind Commerce College, JLN Marg, Jaipur-302004 (Rajasthan)</span>
       </div>
       <div class="footer-contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/phone.svg" width="14" height="14"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/assets/icons/phone.svg" width="14" height="14"/></svg>
         1800-180-6127 (Toll Free)
       </div>
       <div class="footer-contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/frontend/assets/icons/email.svg" width="14" height="14"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.6" style="flex-shrink:0;margin-top:2px;"><img src="/assets/icons/email.svg" width="14" height="14"/></svg>
         <a href="mailto:support@rajfab.rajasthan.gov.in">support@rajfab.rajasthan.gov.in</a>
       </div>
     </div>
